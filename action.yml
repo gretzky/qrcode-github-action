@@ -3,9 +3,15 @@ description: "Generate a QR Code for a URL"
 inputs:
   url:
     description: URL to generate a QR code for
+  name:
+    description: Name to give the QR code if generating an image
 outputs:
-  qrcode:
-    description: "Path to the generated QR code"
+  qrcodeBase64:
+    description: "Base64 encoded QR Code"
+  qrcodeImg:
+    description: "PNG image path to the QR Code"
+  qrcodeStr:
+    description: "UTF8 QR Code"
 runs:
   using: "node16"
   main: "dist/index.js"
