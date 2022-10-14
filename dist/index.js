@@ -7993,6 +7993,31 @@ exports.toFileStream = function toFileStream (stream, text, opts) {
 
 /***/ }),
 
+/***/ 6388:
+/***/ ((module) => {
+
+"use strict";
+
+
+function hash(str) {
+  var hash = 5381,
+      i    = str.length;
+
+  while(i) {
+    hash = (hash * 33) ^ str.charCodeAt(--i);
+  }
+
+  /* JavaScript does bitwise operations (like XOR, above) on 32-bit signed
+   * integers. Since we want the results to be always positive, convert the
+   * signed int to an unsigned by doing an unsigned bitshift. */
+  return hash >>> 0;
+}
+
+module.exports = hash;
+
+
+/***/ }),
+
 /***/ 8125:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
@@ -9074,21 +9099,28 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(7954);
 const QRCode = __nccwpck_require__(6100);
+const stringHash = __nccwpck_require__(6388);
 
 async function run() {
   try {
-    const content = core.getInput("url", { required: true });
-    const name = core.getInput("name");
+    const content = core.getInput("url");
 
     const base64 = await QRCode.toDataURL(content);
-    const str = await QRCode.toString(content);
-    const file = await QRCode.toFile(`${process.cwd()}/${name}.png`, {
-      type: "png",
-    });
-
     core.setOutput("qrcodeBase64", base64);
+
+    const str = await QRCode.toString(content);
     core.setOutput("qrcodeStr", str);
-    core.setOutput("qrcodeImg", file);
+
+    const fileName = `${stringHash(content)}.png`;
+    const filePath = `${process.cwd()}/${fileName}`;
+
+    core.info(content);
+    core.info(typeof content);
+
+    QRCode.toFile(filePath, content, { type: "png" }, (err) => {
+      if (err) throw err;
+      core.setOutput("qrcodeImg", filePath);
+    });
   } catch (err) {
     core.setFailed(err.message);
   }
