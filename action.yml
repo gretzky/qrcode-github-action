@@ -1,5 +1,8 @@
 name: "QR Code"
 description: "Generate a QR Code for a URL"
+inputs:
+  url:
+    description: URL to generate a QR code for
 outputs:
   qrcode:
     description: "Path to the generated QR code"

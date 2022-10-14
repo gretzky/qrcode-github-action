@@ -5,7 +5,7 @@ async function run() {
   try {
     const content = core.getInput("url", { required: true });
 
-    const result = await QRCode.toString(content);
+    const result = await QRCode.toDataURL(content);
 
     core.setOutput("qrcode", result);
   } catch (err) {
