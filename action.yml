@@ -1,0 +1,8 @@
+name: "QR Code"
+description: "Generate a QR Code for a URL"
+outputs:
+  qrcode:
+    description: "Path to the generated QR code"
+runs:
+  using: "node16"
+  main: "dist/index.js"

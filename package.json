@@ -1,0 +1,18 @@
+{
+  "name": "strongbad-action",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "author": "gretzky",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "ncc build index.js -o dist --source-map --license licenses.txt"
+  },
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "qrcode": "^1.5.1",
+    "string-hash": "^1.1.3"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.34.0"
+  }
+}
