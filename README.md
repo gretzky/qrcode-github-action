@@ -1,6 +1,6 @@
-# Strong Bad Emails
+# QR Code generator
 
-Github action that outputs a random Strong Bad email link from YouTube.
+Github action that outputs a string QR code
 
 ## Usage
 
@@ -10,12 +10,12 @@ on: [push]
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
-    name: Get a Strong Bad email
+    name: Get a QR Code
     steps:
-      - name: Generate an email link
-        id: strongbad
-        uses: gretzky/strongbad-github-action@v0.1.0
+      - name: Generate a QR code
+        id: qr
+        uses: gretzky/qrcode-github-action@v0.1.0
 
-      - name: Get the email link
-        run: echo "${{ steps.strongbad.outputs.email }}"
+      - name: Get the QR code
+        run: echo "${{ steps.qr.outputs.qrcode }}"
 ```
