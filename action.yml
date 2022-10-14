@@ -3,8 +3,6 @@ description: "Generate a QR Code for a URL"
 inputs:
   url:
     description: URL to generate a QR code for
-  name:
-    description: Name to give the QR code if generating an image
 outputs:
   qrcodeBase64:
     description: "Base64 encoded QR Code"

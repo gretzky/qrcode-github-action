@@ -1,6 +1,6 @@
 {
   "name": "qrcode-github-action",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "main": "dist/index.js",
   "author": "gretzky",
   "license": "MIT",
