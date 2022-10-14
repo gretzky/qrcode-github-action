@@ -9,7 +9,8 @@ async function run() {
     const base64 = await QRCode.toDataURL(content);
     const str = await QRCode.toString(content);
     const filePath = `${process.cwd()}/${name}.png`;
-    const file = await QRCode.toFile(filePath, content, {
+
+    await QRCode.toFile(filePath, content, {
       type: "png",
     });
 
